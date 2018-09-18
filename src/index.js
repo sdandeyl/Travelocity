@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { render } from 'react-dom';
 import { Provider, connect } from 'react-redux';
 import aircheapStore from './store/aircheapStore';
-import Autosuggest from 'react-autosuggest';
+// import Autosuggest from 'react-autosuggest';
 import Select from 'react-select';
 import TicketItem from './components/TicketItem';
 import AirportActionCreators from './actions/AirportActionCreators';
@@ -39,14 +39,14 @@ class App extends Component {
 
            <Select
                name="origin"
-               value={this.props.origin}
+               value={this.props.code}
                options={this.props.airports}
                onChange={this.props.onChooseAirport.bind(this,'origin')}
            />
 
           <Select
                name="destination"
-               value={this.props.destination}
+               value={this.props.code}
                options={this.props.airports}
                onChange={this.props.onChooseAirport.bind(this,'destination')}
            />
@@ -54,7 +54,7 @@ class App extends Component {
           </div>
 
         </header>
-        <div>
+        <div style={{"margin-top":"50px"}}>
           { ticketList }
         </div>
       </div>
