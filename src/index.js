@@ -12,6 +12,7 @@ import AirportActionCreators from './actions/AirportActionCreators';
 class App extends Component {
 
   componentDidMount(){
+    console.log("componentDidMount");
     this.props.fetchAirports();
   }
 
@@ -25,6 +26,7 @@ class App extends Component {
   }
 
   render() {
+    console.log("render");
     let ticketList = this.props.tickets.map((ticket)=>(
       <TicketItem key={ticket.id} ticket={ticket} />
     ));
@@ -54,7 +56,7 @@ class App extends Component {
           </div>
 
         </header>
-        <div style={{"margin-top":"50px"}}>
+        <div style={{"marginTop":"50px"}}>
           { ticketList }
         </div>
       </div>
@@ -72,25 +74,31 @@ App.propTypes = {
 };
 
 
-const mapStateToProps = (state) => (
-  {
+const mapStateToProps = (state) => {
+  console.log("mapStateToProps");
+   return {
     airports: state.airports
       .map(airport => ({ value: airport.code, label: `${airport.city} - ${airport.country} (${airport.code})` })),
     origin: state.route.origin,
     destination: state.route.destination,
-    tickets: state.tickets,
+    tickets: state.tickets
+   }
   }
-);
 
-const mapDispatchToProps = (dispatch) => (
-  {
+
+const mapDispatchToProps = (dispatch) => {
+  console.log("mapDispatchToProps");
+  return {
     fetchAirports: () => dispatch(AirportActionCreators.fetchAirports()),
     onChooseAirport: (target, airport) => dispatch(AirportActionCreators.chooseAirport(target, airport)),
     fetchTickets: (origin, destination) => dispatch(AirportActionCreators.fetchTickets(origin, destination))
-  }
-);
+  }  
+}
+ 
 
+console.log("before connect");
 const AppContainer = connect(mapStateToProps, mapDispatchToProps)(App);
+console.log("after connect");
 
 render(
   <Provider store={aircheapStore}>
