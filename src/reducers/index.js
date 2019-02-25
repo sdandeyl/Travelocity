@@ -4,9 +4,9 @@ import route from './route';
 import tickets from './tickets';
 
 const rootReducer = combineReducers({
-  airports,
-  route,
-  tickets
+  airports: airports,
+  route: route,
+  tickets: tickets
 });
 
 export default rootReducer;

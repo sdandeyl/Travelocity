@@ -26,7 +26,7 @@ class App extends Component {
   }
 
   render() {
-    console.log("render");
+    //console.log("render");
     let ticketList = this.props.tickets.map((ticket)=>(
       <TicketItem key={ticket.id} ticket={ticket} />
     ));
@@ -70,12 +70,12 @@ App.propTypes = {
   tickets: PropTypes.array.isRequired,
   fetchAirports: PropTypes.func.isRequired,
   onChooseAirport: PropTypes.func.isRequired,
-  fetchTickets: PropTypes.func.isRequired,
+  fetchTickets: PropTypes.func.isRequired
 };
 
 
 const mapStateToProps = (state) => {
-  console.log("mapStateToProps");
+  //console.log("mapStateToProps");
    return {
     airports: state.airports
       .map(airport => ({ value: airport.code, label: `${airport.city} - ${airport.country} (${airport.code})` })),
@@ -87,7 +87,7 @@ const mapStateToProps = (state) => {
 
 
 const mapDispatchToProps = (dispatch) => {
-  console.log("mapDispatchToProps");
+  //console.log("mapDispatchToProps");
   return {
     fetchAirports: () => dispatch(AirportActionCreators.fetchAirports()),
     onChooseAirport: (target, airport) => dispatch(AirportActionCreators.chooseAirport(target, airport)),
@@ -96,9 +96,9 @@ const mapDispatchToProps = (dispatch) => {
 }
  
 
-console.log("before connect");
+//console.log("before connect");
 const AppContainer = connect(mapStateToProps, mapDispatchToProps)(App);
-console.log("after connect");
+//console.log("after connect");
 
 render(
   <Provider store={aircheapStore}>
